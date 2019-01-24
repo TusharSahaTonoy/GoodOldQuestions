@@ -12,52 +12,87 @@ class AdminController extends Controller
     {
         $this->middleware('auth');
     }
+
+    private function userCheck()
+    {
+        if(Auth::user()->role!=2)
+        {
+            return redirect('/')->with('error','You are not listed as ADMIN');
+        }
+    }
     
     public function homeAdmin()
     {
         //user check
-        if(Auth::user()->role!=2)
-        {
-            return redirect('/')->with('error','You are not listed as ADMIN');
-        }
+        $this->userCheck();
         
-        $count = Question::where('status','=','0')->count();
-        
-        return view('admin.homeAdmin',compact('count'));
+        $pendingCount = Question::where('status',0)->count();
+        $approveCount = Question::where('status',1)->count();
+        $rejectedCount = Question::where('status',2)->count();
+        $totalCount = Question::all()->count();
+        return view('admin.homeAdmin',compact('pendingCount','approveCount','rejectedCount','totalCount'));
     }
-    
-    public function pendingQuestions()
+
+    public function listQuestions($status)
     {
-        //user check
-        if(Auth::user()->role!=2)
+        $this->userCheck();
+
+        if($status!="all")
         {
-            return redirect('/')->with('error','You are not listed as ADMIN');
+            $questions = Question::where('status',$status)->get(['id','varsity']);
+            $varsities = config('constants.varsities');
+            
+            if($status=='0')
+            {
+                return view('admin.pendingQsionAdmin',compact('questions' ,'varsities'));
+            }
+            elseif($status=='1')
+            {
+                return view('admin.approvedQsionAdmin',compact('questions' ,'varsities'));
+            }
+            elseif(($status=='2')) {
+                return view('admin.rejectedQsionAdmin',compact('questions' ,'varsities'));
+            }
+            else {
+                return view('notFound');
+            }
+        }else if($status=='all'){
+            $questions = Question::all('id','varsity');
+            $varsities = config('constants.varsities');
+
+            return view('admin.rejectedQsionAdmin',compact('questions' ,'varsities'));
         }
+        else {
+            return view('notFound');
+        }
+        
 
-        $questions = Question::where('status','=','0')->get();
-
-        return view('admin.pendingQsionAdmin',compact('questions'));
+        
     }
 
     public function detailQuestion($id)
     {
         $question =  Question::find($id);
-        return view('admin.detailQsionAdmin',compact('question'));
+        $varsities = config('constants.varsities');
+        $departments =config('constants.departments');
+
+        $varsity = $varsities[$question->varsity];
+        $department = $departments[$question->department];
+
+        return view('admin.detailQsionAdmin',compact('varsity','department','question'));
     }
 
     public function changeStatus(Request $request)
     {
         //user check
-        if(Auth::user()->role!=2)
-        {
-            return redirect('/')->with('error','You are not listed as ADMIN');
-        }
+        $this->userCheck();
 
         $question = Question::find($request->input('id'));
 
         $question->status = $request->input('status');
+        $question->comment = $request->input('comment');
         $question->save();
 
-        return redirect('/admin/pendingQuestions');
+        return redirect('/admin');
     }
 }

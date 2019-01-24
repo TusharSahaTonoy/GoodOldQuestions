@@ -21,7 +21,7 @@
 
                 @else
                     <li class="nav-item">
-                        <a class="nav-link" href="">My Posts</a>
+                        <a class="nav-link" href=" {{route('user.home')}} ">User Panel</a>
                     </li>
                     
                     <li class="nav-item btn btn-sm btn-primary">

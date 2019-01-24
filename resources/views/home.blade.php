@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row">
             {{-- category --}}
-            <div class="col-sm-6 col-md-6 col-lg-6">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6">
                 <div class="card">
                     <div class="card-body">
                         {!! Form::open(['action'=>'HomeController@searchQuestion','method'=>'POST']) !!}
@@ -44,7 +44,7 @@
                 </div>
             </div>
             {{-- questionlist --}}
-            <div class="col-sm-6 col-md-6 col-lg-6">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6">
                 <div class="card">
                     <div class="card-body">
                         <ul class="list-group">

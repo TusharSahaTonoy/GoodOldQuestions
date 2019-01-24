@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Pending Questions</h1>
+<h1>Approved Questions</h1>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12">

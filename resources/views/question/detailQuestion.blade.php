@@ -31,12 +31,11 @@
                     &nbsp;&nbsp;
                     {{ Form::label('versity',$question->year,['class'=>'col-form-label '])}}
                 </div>
-
+                {{-- department --}}
                 <div class="form-group row">
                     {{ Form::label('department','Department :',['class'=>'col-md-3 col-form-label text-md-right'])}}
                     
                     {{ Form::label('department',$department,['class'=>'col-form-label text-md-left'])}}
-
                 </div>
 
                 <div class="form-group row justify-content-center">

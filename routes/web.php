@@ -18,9 +18,10 @@ Route::get('/question/{id}','QuestionController@detailQuestion')->name('qestion.
 
 //----------------- Admin ----------------------//
 Route::get('/admin','AdminController@homeAdmin')->name('admin.home');
-Route::get('/admin/pendingQuestions','AdminController@pendingQuestions')->name('admin.pendingQuestions');
-Route::get('/admin/pendingQuestion/{id}','AdminController@detailQuestion')->name('admin.pendingQuestion');
-Route::post('/admin/pendingQuestion','AdminController@changeStatus')->name('admin.changeStatus');
+Route::get('/admin/listQuestion/{status}','AdminController@listQuestions')->name('admin.listQuestions');
+
+Route::get('/admin/question/{id}','AdminController@detailQuestion')->name('admin.detailQuestion');
+Route::post('/admin/changeStatus','AdminController@changeStatus')->name('admin.changeStatus');
 
 //----------------- User ----------------------//
 Route::get('/user','UserController@homeUser')->name('user.home');

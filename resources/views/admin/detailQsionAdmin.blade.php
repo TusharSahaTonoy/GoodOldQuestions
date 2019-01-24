@@ -16,9 +16,10 @@
                 <div class="form-group row">
                     {{ Form::label('versity','University Name :',['class'=>'col-md-3 col-form-label text-md-right'])}}
 
-                    {{ Form::label('versity',$question->varsity,['class'=>'col-md-9 col-form-label text-md-left'])}}
+                    {{ Form::label('versity',$varsity,['class'=>'col-form-label text-md-left'])}}
                     
                 </div>
+
                 {{-- Semester --}}
                 <div class="form-group row">
                     {{ Form::label('semester','Select Semester :',['class'=>'col-md-3 col-form-label text-md-right'])}}
@@ -34,23 +35,11 @@
                     {{ Form::label('versity',$question->year,['class'=>'col-form-label '])}}
                 </div>
 
+                {{-- department --}}
                 <div class="form-group row">
                     {{ Form::label('department','Department :',['class'=>'col-md-3 col-form-label text-md-right'])}}
                     
-                    @if ($question->department=='swe')
-                        {{ Form::label('department','Software Engineering (SWE)',['class'=>'col-form-label text-md-left'])}}
-
-                    @elseif($question->department=='cse')
-                        {{ Form::label('department','Computer Science And Engineering (CSE)',['class'=>'col-form-label text-md-left'])}}
-                    
-                    @elseif($question->department=='eee')
-                        {{ Form::label('department','Electrical And Electronics Engineering (EEE)',['class'=>'col-form-label text-md-left'])}}
-
-                    @elseif($question->department=='bba')
-                        {{ Form::label('department','Bachelor of Business Administration (BBA)',['class'=>'col-form-label text-md-left'])}}
-
-                    @endif
-
+                    {{ Form::label('department',$department,['class'=>'col-form-label text-md-left'])}}
                 </div>
 
                 <div class="form-group row justify-content-center">
