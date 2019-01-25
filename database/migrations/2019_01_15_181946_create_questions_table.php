@@ -20,13 +20,14 @@ class CreateQuestionsTable extends Migration
             $table->string('year');
             $table->string('department');
             $table->string('subject');
+            $table->tinyinteger('term')->default('0');
             $table->string('batch');
             $table->string('page1');
             $table->string('page2')->nullable();
             $table->string('page3')->nullable();
             $table->integer('user_id');
-            $table->tinyInteger('status')->default('0');
-            $table->stirng('comment')->default('Everything Good');
+            $table->tinyinteger('status')->default('0');
+            $table->string('comment')->default('Everything Good');
             $table->timestamps();
         });
     }
