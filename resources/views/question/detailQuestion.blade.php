@@ -39,18 +39,18 @@
                 </div>
 
                 <div class="form-group row justify-content-center">
-                    <img src="{{asset('/storage/QPics/'.$question->page1)}}" alt="Page1">
+                    <img src="{{secure_asset('/storage/QPics/'.$question->page1)}}" alt="Page1">
                 </div>
 
                 @if($question->page2!=null)
                 <div class="form-group row justify-content-center">
-                    <img src="{{asset('/storage/QPics/'.$question->page2)}}" alt="Page2">
+                    <img src="{{secure_asset('/storage/QPics/'.$question->page2)}}" alt="Page2">
                 </div>
                 @endif
                 
                 @if($question->page3!=null)
                 <div class="form-group row justify-content-center">
-                    <img src="{{asset('/storage/QPics/'.$question->page3)}}" alt="Page3">
+                    <img src="{{secure_asset('/storage/QPics/'.$question->page3)}}" alt="Page3">
                 </div>
                 @endif
 
